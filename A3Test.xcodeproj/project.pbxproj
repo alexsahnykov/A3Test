@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C14A806A214AB7DF00AE5878 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A8069214AB7DF00AE5878 /* UsersTableViewController.swift */; };
+		C14A806C214AB7F000AE5878 /* PhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A806B214AB7F000AE5878 /* PhotosTableViewController.swift */; };
+		C14A806E214AB84800AE5878 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A806D214AB84800AE5878 /* PhotoTableViewCell.swift */; };
 		C19B161F214AB418003D058E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B161E214AB418003D058E /* AppDelegate.swift */; };
 		C19B1624214AB418003D058E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C19B1622214AB418003D058E /* Main.storyboard */; };
 		C19B1626214AB41D003D058E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C19B1625214AB41D003D058E /* Assets.xcassets */; };
@@ -14,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C14A8069214AB7DF00AE5878 /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
+		C14A806B214AB7F000AE5878 /* PhotosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewController.swift; sourceTree = "<group>"; };
+		C14A806D214AB84800AE5878 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 		C19B161B214AB418003D058E /* A3Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = A3Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C19B161E214AB418003D058E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C19B1623214AB418003D058E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				C19B1622214AB418003D058E /* Main.storyboard */,
+				C14A806D214AB84800AE5878 /* PhotoTableViewCell.swift */,
 				C19B1627214AB41D003D058E /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -81,6 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				C19B161E214AB418003D058E /* AppDelegate.swift */,
+				C14A8069214AB7DF00AE5878 /* UsersTableViewController.swift */,
+				C14A806B214AB7F000AE5878 /* PhotosTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -164,7 +173,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C14A806E214AB84800AE5878 /* PhotoTableViewCell.swift in Sources */,
+				C14A806A214AB7DF00AE5878 /* UsersTableViewController.swift in Sources */,
 				C19B161F214AB418003D058E /* AppDelegate.swift in Sources */,
+				C14A806C214AB7F000AE5878 /* PhotosTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,7 +330,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "------------------.A3Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -336,7 +348,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "------------------.A3Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
