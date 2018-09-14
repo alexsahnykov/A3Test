@@ -12,9 +12,7 @@ import Foundation
 struct Album:Decodable {
     
     var id: Int?
-    var userId: Int?
-    
-    
+
    
 }
 struct GetAlbums {

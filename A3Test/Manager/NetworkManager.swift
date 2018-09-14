@@ -56,9 +56,8 @@ class getDataNetworkService {
             }
         }
     }
-    static func getPhotos(userId:Int, completion: @escaping(GetPhotos) -> ()) {
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/albums/"+"\(userId)"+"/photos") else { return }
-        print(url)
+    static func getPhotos(completion: @escaping(GetPhotos) -> ()) {
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/photos") else { return }
         networkManager.shared.getData(url: url) { (data) in
             do {
                 let photosData = try GetPhotos(data: data as! Data)

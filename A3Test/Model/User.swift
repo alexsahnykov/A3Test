@@ -14,7 +14,8 @@ struct user {
     var id: Int = 0
     var name: String = ""
     var albums: [Album] = []
-    
+    var photos: [Photo] = []
+
     
 init(id: Int, name: String, albums: [Album]) {
         self.id = id
@@ -33,7 +34,7 @@ struct UserData:Decodable {
 
 
 
-class GetUsers {
+struct GetUsers {
     var users: [user] = []
 
     init(data: Data) throws {

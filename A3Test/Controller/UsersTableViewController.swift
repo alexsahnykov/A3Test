@@ -10,21 +10,31 @@ import UIKit
 
 class UsersTableViewController: UITableViewController {
     var usersForTable:[user] = []
-
+     var photos:[Photo] = []
     
+    @IBAction func sdfsdf(_ sender: Any) {
+        print(self.photos)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        getDataNetworkService.getPhotos { (photosData) in
+            self.photos = photosData.photos
+            DispatchQueue.main.async  {
+                self.tableView.reloadData()
+        }
+        }
         getDataNetworkService.getUsers { (users) in
             self.usersForTable = users.users
-            DispatchQueue.main.async  {
-                self.tableView.reloadData()}
-            
+                for objc in self.usersForTable {
+                    getDataNetworkService.getAlbums(userId: objc.id) { (albumsData) in
+                     self.usersForTable[objc.id-1].albums = albumsData.albums
+                        
+                    }
+            }
         }
-
-        
-        
-        // getUsers()
     }
+
     
     override func viewDidAppear(_ animated: Bool) {
        super.viewWillAppear(true)
@@ -56,15 +66,17 @@ class UsersTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "fromUserToPhoto" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let object = usersForTable[indexPath.row]
-                getDataNetworkService.getAlbums(userId: object.id) { (albumsData) in
-                let dvc = segue.destination as! PhotosTableViewController
-                dvc.albums = albumsData.albums
+        let dvc = segue.destination as! PhotosTableViewController
+        if let indexPath = tableView.indexPathForSelectedRow {
+            let object = usersForTable[indexPath.row]
+            for obj in object.albums {
+            let filteredPhotos = self.photos.filter ({ $0.albumId == obj.id })
+            dvc.photos = dvc.photos + filteredPhotos
             }
-        }
-    }
-    
+            
 
+        }
 }
 }
+}
+

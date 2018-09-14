@@ -9,7 +9,6 @@
 import UIKit
 
 class PhotosTableViewController: UITableViewController {
-    var albums:[Album] = []
     var photos:[Photo] = []
     
     override func viewDidLoad() {
@@ -20,13 +19,7 @@ class PhotosTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
       //  print(albums)
-        for object in albums {
-            getDataNetworkService.getPhotos(userId: object.id!) { (photosData) in
-            self.photos = photosData.photos+self.photos
-                DispatchQueue.main.async  {
-                    self.tableView.reloadData()}
-            }
-    }
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

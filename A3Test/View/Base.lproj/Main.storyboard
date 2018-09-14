@@ -33,7 +33,13 @@
                             <outlet property="delegate" destination="kCH-6h-1DL" id="t9R-cR-THf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Users" id="9T6-9a-rQd"/>
+                    <navigationItem key="navigationItem" title="Users" id="9T6-9a-rQd">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="nNV-vh-3nO">
+                            <connections>
+                                <action selector="sdfsdf:" destination="kCH-6h-1DL" id="Mnn-PU-ass"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="ucb-TB-FUa" kind="show" identifier="fromUserToPhoto" id="Fm3-Nh-rpO"/>
                     </connections>
@@ -64,7 +70,7 @@
                                                 <constraint firstAttribute="height" constant="343" id="M7I-x1-5PJ"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9t-WU-hem">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9t-WU-hem">
                                             <rect key="frame" x="16" y="362" width="343" height="20.333333333333314"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -84,7 +90,6 @@
                                         <constraint firstItem="7RG-aj-xsa" firstAttribute="leading" secondItem="K9t-WU-hem" secondAttribute="leading" id="Q31-2f-Ben"/>
                                         <constraint firstItem="7RG-aj-xsa" firstAttribute="top" secondItem="Ncr-QV-Lsz" secondAttribute="topMargin" id="UzR-5y-D3m"/>
                                         <constraint firstItem="7RG-aj-xsa" firstAttribute="trailing" secondItem="K9t-WU-hem" secondAttribute="trailing" id="V4S-H3-xJD"/>
-                                        <constraint firstItem="K9t-WU-hem" firstAttribute="top" secondItem="7RG-aj-xsa" secondAttribute="bottom" constant="8" id="Xck-LU-meB"/>
                                         <constraint firstAttribute="bottom" secondItem="K9t-WU-hem" secondAttribute="bottom" constant="11.333333333333371" id="hF0-yM-8WX"/>
                                         <constraint firstItem="muE-h3-g9Z" firstAttribute="centerY" secondItem="7RG-aj-xsa" secondAttribute="centerY" id="ouv-2C-wvB"/>
                                         <constraint firstItem="K9t-WU-hem" firstAttribute="leading" secondItem="Ncr-QV-Lsz" secondAttribute="leading" constant="16" id="qGW-3j-eKj"/>
