@@ -9,11 +9,21 @@
 import UIKit
 
 class UsersTableViewController: UITableViewController {
-    var usersForTable:[User] = []
+    var usersForTable:[user] = []
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUsers()
+        getDataNetworkService.getUsers { (users) in
+            self.usersForTable = users.users
+            DispatchQueue.main.async  {
+                self.tableView.reloadData()}
+            
+        }
+
+        
+        
+        // getUsers()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -48,35 +58,13 @@ class UsersTableViewController: UITableViewController {
     if segue.identifier == "fromUserToPhoto" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let object = usersForTable[indexPath.row]
+                getDataNetworkService.getAlbums(userId: object.id) { (albumsData) in
                 let dvc = segue.destination as! PhotosTableViewController
-                dvc.usersForPhotos = object
+                dvc.albums = albumsData.albums
             }
         }
     }
     
-    
-    
-    
-    func getUsers() {
-      let urlString = "https://jsonplaceholder.typicode.com/users"
-        let queue = DispatchQueue.global(qos: .utility)
-        queue.async {
-        guard let url = URL(string: urlString) else {return}
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
- 
-            guard let data = data else {return}
-            guard  error == nil else {
-                print((error?.localizedDescription)!)
-                return}
-        do {
-        let users = try JSONDecoder().decode(Array<User>.self, from: data)
-        for object in users {
-        self.usersForTable.append(object)}
-            DispatchQueue.main.async  {
-            self.tableView.reloadData()}
-        } catch let error {print(error)}
-            }.resume()
-           
-        }
-    }
+
+}
 }
