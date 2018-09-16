@@ -10,8 +10,8 @@ import UIKit
 
 class UsersTableViewController: UITableViewController {
     var usersForTable:[user] = []
-     var photos:[Photo] = []
-    var albums:[Album] = []
+    var userPhotos:[Photo] = []
+    var userAlbums:[Album] = []
     
     @IBAction func refreash(_ sender: Any) {
     self.usersForTable.removeAll()
@@ -29,8 +29,8 @@ class UsersTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
        super.viewWillAppear(true)
-        self.photos.removeAll()
-        self.albums.removeAll()
+        self.userPhotos.removeAll()
+        self.userAlbums.removeAll()
     }
 
     //  Table view data source
@@ -48,10 +48,10 @@ class UsersTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let object = usersForTable[indexPath.row]
         getDataNetworkService.getAlbums(userId: object.id) { (albumsData) in
-        self.albums.append(contentsOf: albumsData.albums)
+        self.userAlbums.append(contentsOf: albumsData.albums)
             DispatchQueue.main.async  {
-                getDataNetworkService.getPhotos(albumId: (self.albums.first?.id)!) { (photosData) in
-                    self.photos.append(contentsOf: photosData.photos)
+                getDataNetworkService.getPhotos(albumId: (self.userAlbums.first?.id)!) { (photosData) in
+                    self.userPhotos.append(contentsOf: photosData.photos)
                     DispatchQueue.main.async  {
                         self.performSegue(withIdentifier: "fromUserToPhoto", sender: self)}
                 }
@@ -70,9 +70,9 @@ class UsersTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "fromUserToPhoto" {
         let dvc = segue.destination as! PhotosTableViewController
-            dvc.photos = self.photos
-            dvc.totalAlbums = self.albums
-            dvc.firsAlbum = (self.albums.first?.id)!
+            dvc.userphotos = self.userPhotos
+            dvc.userAlbums = self.userAlbums
+            dvc.firsAlbum = (self.userAlbums.first?.id)!
         
         }
     }

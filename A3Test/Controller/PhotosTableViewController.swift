@@ -11,8 +11,8 @@ import UIKit
 class PhotosTableViewController: UITableViewController {
    
     
-    var photos:[Photo] = []
-    var totalAlbums:[Album] = []
+    var userphotos:[Photo] = []
+    var userAlbums:[Album] = []
     var firsAlbum = 0
     var cache = NSCache<NSString,AnyObject>()
     
@@ -32,12 +32,12 @@ class PhotosTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return photos.count
+        return userphotos.count
     }
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! PhotoTableViewCell
-        let cellItem = photos[indexPath.row]
+        let cellItem = userphotos[indexPath.row]
         cell.photoTitleLable.text = cellItem.title
         // in cashe
         if let imageURL = cache.object(forKey: cellItem.url as NSString)  {
@@ -67,12 +67,12 @@ class PhotosTableViewController: UITableViewController {
     // Infinity scroling
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastitem = photos.count - 1
+        let lastitem = userphotos.count - 1
         if indexPath.row == lastitem {
         self.firsAlbum = self.firsAlbum + 1
-            if self.firsAlbum <= (totalAlbums.last?.id)! {
+            if self.firsAlbum <= (userAlbums.last?.id)! {
             getDataNetworkService.getPhotos(albumId: self.firsAlbum)  { (photosData) in
-                self.photos.append(contentsOf: photosData.photos)
+                self.userphotos.append(contentsOf: photosData.photos)
                 DispatchQueue.main.async  {
                     self.tableView.reloadData()}}
             } else {return}
