@@ -13,18 +13,18 @@ class UsersTableViewController: UITableViewController {
      var photos:[Photo] = []
     var albums:[Album] = []
     
+    @IBAction func refreash(_ sender: Any) {
+    self.usersForTable.removeAll()
+      getUsers()
+    }
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDataNetworkService.getUsers { (users) in
-        self.usersForTable = users.users
-        DispatchQueue.main.async  {
-        self.tableView.reloadData()}}
-            }
+        getUsers()
 
-
+    }
 
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,6 +77,12 @@ class UsersTableViewController: UITableViewController {
         }
     }
     
+    func getUsers() {
+        getDataNetworkService.getUsers { (users) in
+            self.usersForTable = users.users
+            DispatchQueue.main.async  {
+                self.tableView.reloadData()}}
+    }
     
 }
 
