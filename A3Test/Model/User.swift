@@ -13,17 +13,15 @@ struct user {
 
     var id: Int = 0
     var name: String = ""
-    var albums: [Album] = []
+
 
 
     
-init(id: Int, name: String, albums: [Album]) {
+init(id: Int, name: String) {
         self.id = id
         self.name = name
-        self.albums = albums
-    }
 }
-
+}
 
 
 struct UserData:Decodable {
@@ -40,9 +38,10 @@ struct GetUsers {
     init(data: Data) throws {
         let json = try JSONDecoder().decode(Array<UserData>.self, from: data)
         for object in  json  {
-            let userForArray = user.init(id: object.id, name: object.name, albums: [])
+            let userForArray = user.init(id: object.id, name: object.name)
                  users.append(userForArray)}
             }
         } 
+
 
 

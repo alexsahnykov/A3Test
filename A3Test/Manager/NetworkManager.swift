@@ -16,7 +16,10 @@ class networkManager {
     let session = URLSession.shared
     
     session.dataTask(with: url) { (data, response, error) in
-    guard let data = data else { return }
+    guard let data = data else {
+        
+        print((error?.localizedDescription)!)
+        return }
     completionHandler(data)
     }.resume()
     }

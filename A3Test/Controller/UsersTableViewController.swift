@@ -11,26 +11,23 @@ import UIKit
 class UsersTableViewController: UITableViewController {
     var usersForTable:[user] = []
      var photos:[Photo] = []
+    var albums:[Album] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getDataNetworkService.getUsers { (users) in
-            self.usersForTable = users.users
-                for objc in self.usersForTable {
-                    getDataNetworkService.getAlbums(userId: objc.id) { (albumsData) in
-                     self.usersForTable[objc.id-1].albums = albumsData.albums
-                        DispatchQueue.main.async  {
-                            self.tableView.reloadData()}
-                }
+        self.usersForTable = users.users
+        DispatchQueue.main.async  {
+        self.tableView.reloadData()}}
             }
-        }
-    }
+
+
 
     
     override func viewDidAppear(_ animated: Bool) {
        super.viewWillAppear(true)
         self.photos.removeAll()
-
+        self.albums.removeAll()
     }
 
     //  Table view data source
@@ -45,14 +42,18 @@ class UsersTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let object = usersForTable[indexPath.row]
-            getDataNetworkService.getPhotos(albumId: (object.albums.first?.id)!) { (photosData) in
-            self.photos.append(contentsOf: photosData.photos)
-                DispatchQueue.main.async  {
-                            self.performSegue(withIdentifier: "fromUserToPhoto", sender: self)
+        getDataNetworkService.getAlbums(userId: object.id) { (albumsData) in
+        self.albums.append(contentsOf: albumsData.albums)
+            DispatchQueue.main.async  {
+                getDataNetworkService.getPhotos(albumId: (self.albums.first?.id)!) { (photosData) in
+                    self.photos.append(contentsOf: photosData.photos)
+                    DispatchQueue.main.async  {
+                        self.performSegue(withIdentifier: "fromUserToPhoto", sender: self)}
+                }
+            }
         }
     }
-    }
- 
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) 
@@ -64,13 +65,14 @@ class UsersTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "fromUserToPhoto" {
         let dvc = segue.destination as! PhotosTableViewController
-        if let indexPath = tableView.indexPathForSelectedRow {
-        let object = usersForTable[indexPath.row]
+
             dvc.photos = self.photos
-            dvc.totalAlbums = object.albums
-            dvc.firsAlbum = (object.albums.first?.id)!
+            dvc.totalAlbums = self.albums
+            dvc.firsAlbum = (self.albums.first?.id)!
+        
         }
-}
-}
+    }
+    
+    
 }
 

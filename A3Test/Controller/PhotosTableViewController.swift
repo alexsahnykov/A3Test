@@ -37,7 +37,7 @@ class PhotosTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! PhotoTableViewCell
         let cellItem = photos[indexPath.row]
         cell.photoTitleLable.text = cellItem.title
-        cell.mainBack.layer.cornerRadius = 10
+        cell.photoView.downloaded(from: cellItem.url)
         
         return cell
     }
@@ -52,9 +52,30 @@ class PhotosTableViewController: UITableViewController {
                 print(photosData.photos)
                 DispatchQueue.main.async  {
                     self.tableView.reloadData()}}
-                                                        } else {return}
-                                    }
-                    }
+            } else {return}
+        }
+    }
+
     
-    
+}
+
+
+extension UIImageView {
+    func downloaded(from url: URL) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            DispatchQueue.main.async() {
+                self.image = image
+            }
+            }.resume()
+    }
+    func downloaded(from link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+        guard let url = URL(string: link) else { return }
+        downloaded(from: url)
+    }
 }
