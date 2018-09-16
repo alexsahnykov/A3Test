@@ -9,7 +9,7 @@
 import Foundation
 
 
-class Photo:Decodable {
+struct Photo:Decodable {
     
     var albumId: Int
     var id: Int

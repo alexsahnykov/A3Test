@@ -23,6 +23,7 @@ class PhotosTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
+        self.cache.removeAllObjects()
     }
 
 
@@ -45,15 +46,19 @@ class PhotosTableViewController: UITableViewController {
         // in outcCashe
             cell.photoTitleLable.text = cellItem.title
             let url = URL(string: cellItem.url)
+            let queue = DispatchQueue.global(qos: .utility)
+            queue.async {
             networkManager.shared.getData(url: url!) { (data) in
             let image = UIImage(data: data as! Data)
-            DispatchQueue.main.async  {
+            self.cache.setObject(image as AnyObject, forKey: cellItem.url as NSString)
+
+                DispatchQueue.main.async  {
                 cell.photoView.image = image
                 cell.myActivityIndicator.stopAnimating()
-  
+                
                 }
-            self.cache.setObject(image as AnyObject, forKey: cellItem.url as NSString)
         }
+            }
         }
         return cell
     }

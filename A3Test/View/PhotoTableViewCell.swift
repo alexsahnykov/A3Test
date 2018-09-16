@@ -17,6 +17,8 @@ let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActi
     
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        
         myActivityIndicator.hidesWhenStopped = true
         myActivityIndicator.center = photoView.center
         myActivityIndicator.startAnimating()

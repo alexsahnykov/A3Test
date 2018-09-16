@@ -13,6 +13,9 @@ class UsersTableViewController: UITableViewController {
      var photos:[Photo] = []
     var albums:[Album] = []
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getDataNetworkService.getUsers { (users) in
@@ -40,6 +43,8 @@ class UsersTableViewController: UITableViewController {
         return  usersForTable.count
     }
     
+  
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let object = usersForTable[indexPath.row]
         getDataNetworkService.getAlbums(userId: object.id) { (albumsData) in
@@ -65,7 +70,6 @@ class UsersTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "fromUserToPhoto" {
         let dvc = segue.destination as! PhotosTableViewController
-
             dvc.photos = self.photos
             dvc.totalAlbums = self.albums
             dvc.firsAlbum = (self.albums.first?.id)!

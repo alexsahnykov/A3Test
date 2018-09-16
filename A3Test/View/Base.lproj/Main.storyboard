@@ -63,22 +63,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="394"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fex-9w-lnP">
+                                        <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fex-9w-lnP">
                                             <rect key="frame" x="10" y="0.0" width="355" height="384"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GKY-7S-JQW">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKY-7S-JQW">
                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="384"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QYG-nx-oC1">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QYG-nx-oC1">
                                                             <rect key="frame" x="0.0" y="14" width="355" height="375.33333333333331"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
-                                                                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" ambiguous="YES" placeholderIntrinsicWidth="355" placeholderIntrinsicHeight="355" image="UNADJUSTEDNONRAW_thumb_270" translatesAutoresizingMaskIntoConstraints="NO" id="7RG-aj-xsa">
+                                                                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" placeholderIntrinsicWidth="355" placeholderIntrinsicHeight="355" image="UNADJUSTEDNONRAW_thumb_270" translatesAutoresizingMaskIntoConstraints="NO" id="7RG-aj-xsa">
                                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="355"/>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9t-WU-hem">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9t-WU-hem">
                                                                     <rect key="frame" x="0.0" y="355" width="355" height="20.333333333333314"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -88,10 +85,28 @@
                                                         </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="QYG-nx-oC1" secondAttribute="bottom" constant="-5.3300000000000001" id="bVP-vj-mSY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="QYG-nx-oC1" secondAttribute="trailing" id="jYT-Mj-I4r"/>
+                                                        <constraint firstItem="QYG-nx-oC1" firstAttribute="top" secondItem="GKY-7S-JQW" secondAttribute="top" constant="14" id="udX-YC-Oe0"/>
+                                                        <constraint firstItem="QYG-nx-oC1" firstAttribute="leading" secondItem="GKY-7S-JQW" secondAttribute="leading" id="yo7-il-UbK"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="GKY-7S-JQW" firstAttribute="top" secondItem="Fex-9w-lnP" secondAttribute="top" id="BXt-6a-xiD"/>
+                                                <constraint firstItem="GKY-7S-JQW" firstAttribute="leading" secondItem="Fex-9w-lnP" secondAttribute="leading" id="Xvh-kf-tIG"/>
+                                                <constraint firstAttribute="bottom" secondItem="GKY-7S-JQW" secondAttribute="bottom" id="cYN-Tm-h67"/>
+                                                <constraint firstAttribute="trailing" secondItem="GKY-7S-JQW" secondAttribute="trailing" id="ssr-NZ-auN"/>
+                                            </constraints>
                                         </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Fex-9w-lnP" firstAttribute="top" secondItem="Ncr-QV-Lsz" secondAttribute="top" id="D5F-Hl-hbz"/>
+                                        <constraint firstItem="Fex-9w-lnP" firstAttribute="leading" secondItem="Ncr-QV-Lsz" secondAttribute="leading" constant="10" id="JTy-iv-toT"/>
+                                        <constraint firstAttribute="trailing" secondItem="Fex-9w-lnP" secondAttribute="trailing" constant="10" id="bk1-uv-79t"/>
+                                        <constraint firstAttribute="bottom" secondItem="Fex-9w-lnP" secondAttribute="bottom" constant="10" id="oSu-tP-9bb"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="mainBack" destination="Fex-9w-lnP" id="cLs-sH-26l"/>
