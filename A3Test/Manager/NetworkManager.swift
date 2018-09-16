@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import UIKit
+
+
 class networkManager {
     private init() {}
     
@@ -70,6 +73,7 @@ class getDataNetworkService {
             }
         }
     }
+  
 
 
 }
