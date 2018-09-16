@@ -12,12 +12,16 @@ class PhotoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var photoView: UIImageView!
     @IBOutlet weak var photoTitleLable: UILabel!
+    @IBOutlet weak var mainBack: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
 
     }
+    override func layoutSubviews() {
 
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

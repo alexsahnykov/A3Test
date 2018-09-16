@@ -39,6 +39,8 @@ class PhotosTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! PhotoTableViewCell
         let cellItem = photos[indexPath.row]
         cell.photoTitleLable.text = cellItem.title
+        cell.mainBack.layer.cornerRadius = 10
+        
         return cell
     }
 
