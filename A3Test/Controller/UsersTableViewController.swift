@@ -45,20 +45,14 @@ class UsersTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let object = usersForTable[indexPath.row]
-        for items in object.albums {
-            getDataNetworkService.getPhotos(albumId: items.id!) { (photosData) in
+        getDataNetworkService.getPhotos(albumId: (object.albums.first?.id)!) { (photosData) in
             self.photos.append(contentsOf: photosData.photos)
-                
                 DispatchQueue.main.async  {
-                    print(items.id)
-                    if items.id == object.albums.last?.id  {
                             self.performSegue(withIdentifier: "fromUserToPhoto", sender: self)
-                        } else {return}
         }
     }
-        
-        }
     }
+ 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) 
@@ -74,7 +68,7 @@ class UsersTableViewController: UITableViewController {
         let object = usersForTable[indexPath.row]
             dvc.photos = self.photos
             dvc.totalAlbums = object.albums
-       
+            dvc.firsAlbum = (object.albums.first?.id)!
         }
 }
 }

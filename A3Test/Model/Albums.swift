@@ -11,7 +11,7 @@ import Foundation
 
 struct Album:Decodable {
     
-    var id: Int?
+    var id: Int
 
    
 }

@@ -11,7 +11,7 @@ import UIKit
 class PhotosTableViewController: UITableViewController {
     var photos:[Photo] = []
     var totalAlbums:[Album] = []
-    
+    var firsAlbum = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,7 +19,7 @@ class PhotosTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.photos = self.photos.sorted() { $0.id! < $1.id! }
+
         print(self.totalAlbums)
         self.tableView.reloadData()
 
@@ -46,5 +46,20 @@ class PhotosTableViewController: UITableViewController {
         
         return cell
     }
-
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        let lastitem = photos.count - 1
+        if indexPath.row == lastitem {
+        self.firsAlbum = self.firsAlbum + 1
+            if self.firsAlbum <= (totalAlbums.last?.id)! {
+            getDataNetworkService.getPhotos(albumId: self.firsAlbum)  { (photosData) in
+                self.photos.append(contentsOf: photosData.photos)
+                print(photosData.photos)
+                DispatchQueue.main.async  {
+                    self.tableView.reloadData()
+                }
+        }
+            } else {return}
+        }
+}
 }
