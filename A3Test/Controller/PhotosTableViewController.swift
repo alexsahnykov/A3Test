@@ -10,6 +10,7 @@ import UIKit
 
 class PhotosTableViewController: UITableViewController {
     var photos:[Photo] = []
+    var totalAlbums:[Album] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,8 +18,10 @@ class PhotosTableViewController: UITableViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-      //  print(albums)
+    override func viewWillAppear(_ animated: Bool) {
+        self.photos = self.photos.sorted() { $0.id! < $1.id! }
+        print(self.totalAlbums)
+        self.tableView.reloadData()
 
     }
     override func didReceiveMemoryWarning() {

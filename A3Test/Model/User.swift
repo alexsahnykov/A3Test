@@ -14,7 +14,7 @@ struct user {
     var id: Int = 0
     var name: String = ""
     var albums: [Album] = []
-    var photos: [Photo] = []
+
 
     
 init(id: Int, name: String, albums: [Album]) {
