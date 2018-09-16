@@ -22,7 +22,6 @@ class networkManager {
     guard let data = data else {
         
         print((error?.localizedDescription)!)
-        CustomAlert.init(title: "Error", subTitle: (error?.localizedDescription)!).alertController()
         return }
     completionHandler(data)
     }.resume()
