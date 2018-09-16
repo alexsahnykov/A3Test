@@ -45,7 +45,7 @@ class UsersTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let object = usersForTable[indexPath.row]
-        getDataNetworkService.getPhotos(albumId: (object.albums.first?.id)!) { (photosData) in
+            getDataNetworkService.getPhotos(albumId: (object.albums.first?.id)!) { (photosData) in
             self.photos.append(contentsOf: photosData.photos)
                 DispatchQueue.main.async  {
                             self.performSegue(withIdentifier: "fromUserToPhoto", sender: self)

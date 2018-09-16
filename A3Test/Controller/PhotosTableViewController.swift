@@ -9,24 +9,19 @@
 import UIKit
 
 class PhotosTableViewController: UITableViewController {
+   
+    
     var photos:[Photo] = []
     var totalAlbums:[Album] = []
     var firsAlbum = 0
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-
-        print(self.totalAlbums)
         self.tableView.reloadData()
-
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-
     }
 
 
@@ -46,8 +41,8 @@ class PhotosTableViewController: UITableViewController {
         
         return cell
     }
+   
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
         let lastitem = photos.count - 1
         if indexPath.row == lastitem {
         self.firsAlbum = self.firsAlbum + 1
@@ -56,10 +51,10 @@ class PhotosTableViewController: UITableViewController {
                 self.photos.append(contentsOf: photosData.photos)
                 print(photosData.photos)
                 DispatchQueue.main.async  {
-                    self.tableView.reloadData()
-                }
-        }
-            } else {return}
-        }
-}
+                    self.tableView.reloadData()}}
+                                                        } else {return}
+                                    }
+                    }
+    
+    
 }
