@@ -38,13 +38,13 @@ class PhotosTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! PhotoTableViewCell
         let cellItem = photos[indexPath.row]
-        
+        cell.photoTitleLable.text = cellItem.title
         // in cashe
         if let imageURL = cache.object(forKey: cellItem.url as NSString)  {
         cell.photoView.image =  imageURL as? UIImage
         }  else  {
         // in outcCashe
-            cell.photoTitleLable.text = cellItem.title
+
             let url = URL(string: cellItem.url)
             let queue = DispatchQueue.global(qos: .utility)
             queue.async {
