@@ -38,30 +38,28 @@ class PhotosTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! PhotoTableViewCell
         let cellItem = photos[indexPath.row]
         
-        
+        // in cashe
         if let imageURL = cache.object(forKey: cellItem.url as NSString)  {
-           
-            cell.photoView.image =  imageURL as? UIImage
-            print("in cashe")
+        cell.photoView.image =  imageURL as? UIImage
         }  else  {
-        
+        // in outcCashe
             cell.photoTitleLable.text = cellItem.title
             let url = URL(string: cellItem.url)
             networkManager.shared.getData(url: url!) { (data) in
             let image = UIImage(data: data as! Data)
             DispatchQueue.main.async  {
-                cell.photoView.image = image}
-                
+                cell.photoView.image = image
+                cell.myActivityIndicator.stopAnimating()
+  
+                }
             self.cache.setObject(image as AnyObject, forKey: cellItem.url as NSString)
-                print(image)
-                print("out cashe")
         }
         }
         return cell
     }
         
     
-    
+    // Infinity scroling
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastitem = photos.count - 1

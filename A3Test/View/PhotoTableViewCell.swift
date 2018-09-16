@@ -9,15 +9,20 @@
 import UIKit
 
 class PhotoTableViewCell: UITableViewCell {
-
+let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     @IBOutlet weak var photoView: UIImageView!
     @IBOutlet weak var photoTitleLable: UILabel!
     @IBOutlet weak var mainBack: UIView!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
-            
+        myActivityIndicator.hidesWhenStopped = true
+        myActivityIndicator.center = photoView.center
+        myActivityIndicator.startAnimating()
+        self.photoView.addSubview(myActivityIndicator)
+        
+        
             backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
             
             self.mainBack.layer.borderWidth = 1
