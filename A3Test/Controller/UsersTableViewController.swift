@@ -14,7 +14,7 @@ class UsersTableViewController: UITableViewController {
     var userAlbums:[Album] = []
     
     @IBAction func refreash(_ sender: Any) {
-    self.usersForTable.removeAll()
+
       getUsers()
     }
     
@@ -23,7 +23,7 @@ class UsersTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsers()
-
+         self.refreshControl?.addTarget(self, action: #selector(UsersTableViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
     }
 
     
@@ -78,10 +78,17 @@ class UsersTableViewController: UITableViewController {
     }
     
     func getUsers() {
+        self.usersForTable.removeAll()
         getDataNetworkService.getUsers { (users) in
             self.usersForTable = users.users
             DispatchQueue.main.async  {
                 self.tableView.reloadData()}}
+    }
+    
+    @objc func handleRefresh(refreshControl: UIRefreshControl) {
+        getUsers()
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
 }
